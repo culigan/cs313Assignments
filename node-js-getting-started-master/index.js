@@ -14,16 +14,15 @@ app.get('/cost', determineCost);
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 function determineCost(req, res) {
-    var type = req.query.radio;
+    var type = req.query.letter;
     var weight = req.query.weigh;
-    var result = 0.0;
 
     calculateRate(res, type, weight);
 }
 
 function calculateRate(res, type, weight) {
 
-    let result = 0;
+    let result = 0.0;
 
     switch (type) {
         case "stamped":
