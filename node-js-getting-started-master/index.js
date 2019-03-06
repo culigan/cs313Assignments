@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 5000
 
 var app = express();
 app.use(express.static(__dirname + '/public'));
-app.set('views', __dirname, '/views');
+app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use('/', express.static('static/Home'));
 app.get('/cost', determineCost);
@@ -16,7 +16,7 @@ app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 function determineCost(req, res) {
     var type = req.query.radio;
     var weight = req.query.weigh;
-    var result = 0;
+    var result = 0.0;
 
     calculateRate(res, type, weight);
 }
