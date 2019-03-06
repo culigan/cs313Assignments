@@ -8,8 +8,6 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use('/', express.static('static/Home'));
 app.get('/cost', determineCost);
-
-
         
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
