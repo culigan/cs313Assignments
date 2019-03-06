@@ -6,7 +6,7 @@ var app = express();
 app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname, '/views');
 app.set('view engine', 'ejs');
-app.use('/', express.static('static/Home.html'));
+app.use('/', express.static('static/Home'));
 app.get('/cost', determineCost);
 
 
@@ -18,10 +18,10 @@ function determineCost(req, res) {
     var weight = req.query.weigh;
     var result = 0;
 
-    calculateRate(type, weight);
+    calculateRate(res, type, weight);
 }
 
-function calculateRate(type, weight) {
+function calculateRate(res, type, weight) {
 
     let result = 0;
 
