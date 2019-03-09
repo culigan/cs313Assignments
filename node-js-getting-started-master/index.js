@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const lineReader = require('line-reader')
 const PORT = process.env.PORT || 5000
 
 var app = express();
@@ -17,7 +18,7 @@ function determineCost(req, res) {
     var type = req.query.letter;
     var weight = req.query.weigh;
 
-    calculateRate(res, type, weight);
+    calculateRate(res, type, weight, this);
 }
 
 function calculateRate(res, type, weight) {
@@ -74,6 +75,7 @@ function calculateRate(res, type, weight) {
                 result = 2.80;
             break;
         case "retail":
+            //result = calculateZone(type, weight);
             if (weight <= 1.0)
                 result = 3.66;
             else if (weight <= 4.0)
@@ -90,4 +92,15 @@ function calculateRate(res, type, weight) {
 
     }
     res.render('pages/viewcost', { result: result } );
+}
+
+function calculateZone(type, weigh) {
+    var zones = document.getElementById('zone').value;
+
+    lineReader.eachLine('/retail.txt', function (line, last) {
+        if (line.startsWith(weigh)) {
+            var price = line.split('$');
+            return price[parseInt(zones) - 2];
+        }
+    });
 }

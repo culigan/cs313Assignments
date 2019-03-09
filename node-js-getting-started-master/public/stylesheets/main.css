@@ -14,3 +14,11 @@
    padding: 5px;
    font-size: 40px;
 }
+
+input[id^="zone"]{
+   visibility:hidden;
+}
+
+label {
+   visibility: hidden;
+}
